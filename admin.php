@@ -43,6 +43,47 @@ $products = [
         'gia' => 45000
     ]
 ];
+
+$productsPerPage = 6;
+$totalProducts = count($products);
+$totalPages = ceil($totalProducts / $productsPerPage);
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = max(1, min($page, $totalPages));
+
+$offset = ($page - 1) * $productsPerPage;
+$productsToShow = array_slice($products, $offset, $productsPerPage);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['add'])) {
+        $newProduct = [
+            'id' => count($products) + 1,
+            'hinhanh' => $_POST['hinhanh'],
+            'ten' => $_POST['ten'],
+            'mota' => $_POST['mota'],
+            'gia' => $_POST['gia']
+        ];
+        array_push($products, $newProduct);
+    }
+    if (isset($_POST['edit'])) {
+        foreach ($products as &$product) {
+            if ($product['id'] == $_POST['id']) {
+                $product['ten'] = $_POST['ten'];
+                $product['mota'] = $_POST['mota'];
+                $product['gia'] = $_POST['gia'];
+                break;
+            }
+        }
+    }
+    if (isset($_POST['delete'])) {
+        foreach ($products as $key => $product) {
+            if ($product['id'] == $_POST['id']) {
+                unset($products[$key]);
+                break;
+            }
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +127,9 @@ $products = [
     </style>
 </head>
 <body>
-<?php include 'navbar_ad.php'; ?>
+
+<?php include 'navbar.php'; ?>
+
 <div class="container py-5">
     <h2 class="text-center mb-4">Danh Sách Sản Phẩm</h2>
     <div class="text-end">
@@ -111,6 +154,29 @@ $products = [
             </div>
         <?php endforeach; ?>
     </div>
+    <div class="d-flex justify-content-end mt-4">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                    <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+
+                <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+                    <a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
 <div class="container mt-5" id="addProductForm" style="display: none;">
     <h2 class="text-center mb-4">Thêm Mới Sản Phẩm</h2>
@@ -134,6 +200,13 @@ $products = [
         <button type="submit" name="add" class="btn btn-success">Thêm sản phẩm</button>
     </form>
 </div>
+
+<script>t
+    document.getElementById('showFormBtn').addEventListener('click', function() {
+        document.getElementById('addProductForm').style.display = 'block';
+    });
+</script>
+
 <?php include 'footer.php'; ?>
 </body>
 </html>

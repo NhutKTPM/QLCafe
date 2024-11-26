@@ -10,10 +10,10 @@
                     <a class="nav-link" href="index.php"><i class="fas fa-home"></i> Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> Giỏ hàng <span class="badge bg-danger" id="cartCount">0</span></a>
+                    <a class="nav-link" href="cart.php"><i class="fas fa-shopping-cart"></i> Danh sách nước <span class="badge bg-danger" id="cartCount">0</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#about"><i class="fas fa-info-circle"></i> Thông tin</a>
+                    <a class="nav-link" href="#about"><i class="fas fa-info-circle"></i> Thêm nước</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Liên hệ</a>

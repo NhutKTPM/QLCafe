@@ -1,67 +1,108 @@
+<?php
+include 'connect.php';
+//AI
+$productsPerPage = 6; 
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$currentPage = max($currentPage, 1); 
+$totalProductsQuery = "SELECT COUNT(*) AS total FROM dsthucuong";
+$totalProductsResult = $conn->query($totalProductsQuery);
+$totalProducts = $totalProductsResult->fetch_assoc()['total'];
+$offset = ($currentPage - 1) * $productsPerPage;
+$sql = "SELECT * FROM dsthucuong LIMIT $offset, $productsPerPage";
+$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Coffee Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .navbar {
+            background-color: #2c1810 !important;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .footer {
+            background-color: #2c1810;
+            color: white;
+        }
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: white;
+            color: #2c1810;
+            margin-right: 10px;
+        }
+        ul>li{
+            list-style: none;
+        }
+        .text-white{
+            text-decoration: none;
+        }
+    </style>
 </head>
-
 <body>
-    <?php
-    $dsthucuong = [
-        [
-            'mathucuong' => '1',
-            'hinhanh' => 'anh1',
-            'ten' => 'Cafe',
-            'mota' => 'Mo ta cafe',
-            'gia' => '20000'
-        ],
-        [
-            'mathucuong' => '2',
-            'hinhanh' => 'anh2',
-            'ten' => 'Tra',
-            'mota' => 'Tran',
-            'gia' => '20000'
-        ],
-        [
-            'mathucuong' => '1',
-            'hinhanh' => 'Chi',
-            'ten' => 'Cafe',
-            'mota' => 'Tran',
-            'gia' => '20000'
-        ],
-        [
-            'mathucuong' => '1',
-            'hinhanh' => 'Chi',
-            'ten' => 'Cafe',
-            'mota' => 'Tran',
-            'gia' => '20000'
-        ]
-    ];
-    ?>
 
-    <?php include 'navbar.php'; ?>
-
+<?php include 'navbar.php'; ?>
+<section id="drinks" class="py-5">
     <div class="container">
-
-        <div class="card">
-            <h1>DANH SÁCH THỨC UỐNG</h1>
-            <?php foreach ($dsthucuong as $thucuong): ?>
-                <div class="card">
-                    <div><?= $thucuong['hinhanh'] ?></div>
-                    <div><?= $thucuong['ten'] ?></div>
-                    <div><?= $thucuong['mota'] ?></div>
-                    <div><?= $thucuong['gia'] ?></div>
-                    <button>Mua</button>
-                </div>
-            <?php endforeach; ?>
+        <h2 class="text-center mb-4">Menu Đồ Uống</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <?php
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="' . ($row['hinhanh']) . '" class="card-img-top" alt="' . ($row['ten']) . '">
+                            <div class="card-body">
+                                <h5 class="card-title">' . ($row['ten']) . '</h5>
+                                <p class="card-text">' . ($row['mota']) . '</p>
+                                <p class="card-text"><strong>' . number_format($row['gia'], 0, ',', '.') . 'đ</strong></p>
+                                <button class="btn btn-primary add-to-cart">Thêm vào giỏ</button>
+                            </div>
+                        </div>
+                    </div>';
+                }
+            } else {
+                echo '<p class="text-center text-muted">Không có sản phẩm nào.</p>';
+            }
+            ?>
+        </div>
+        <?php
+        include 'pagination.php';
+        ?>
+    </div>
+</section>
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Về Chúng Tôi</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Câu Chuyện Coffee Web</h4>
+                <p>Coffee Web là không gian cafe được yêu thích tại Hà Nội với hơn 5 năm kinh nghiệm. Chúng tôi tự hào mang đến những tách cà phê ngon nhất từ những hạt cà phê được chọn lọc kỹ càng.</p>
+            </div>
+            <div class="col-md-6">
+                <h4>Giá Trị Cốt Lõi</h4>
+                <ul>
+                    <li>Chất lượng đồ uống tuyệt hảo</li>
+                    <li>Dịch vụ khách hàng chu đáo</li>
+                    <li>Không gian thoải mái, ấm cúng</li>
+                    <li>Giá cả hợp lý</li>
+                </ul>
+            </div>
         </div>
     </div>
-
-
+</section>
+<?php include 'footer.php' ?>
 </body>
-
 </html>

@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<?php include 'navbar.php'; ?>
+<?php include 'navbar_ad.php'; ?>
 
 <div class="container py-5">
     <h2 class="text-center mb-4">Danh Sách Sản Phẩm</h2>

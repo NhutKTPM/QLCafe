@@ -8,6 +8,7 @@ $totalProductsQuery = "SELECT COUNT(*) AS total FROM dsthucuong";
 $totalProductsResult = $conn->query($totalProductsQuery);
 $totalProducts = $totalProductsResult->fetch_assoc()['total'];
 $offset = ($currentPage - 1) * $productsPerPage;
+
 $sql = "SELECT * FROM dsthucuong LIMIT $offset, $productsPerPage";
 $result = $conn->query($sql);
 ?>

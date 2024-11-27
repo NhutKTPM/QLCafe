@@ -54,7 +54,8 @@ $result = $conn->query($sql);
 <div class="container py-5">
     <h2 class="text-center mb-4">Danh Sách Sản Phẩm</h2>
     <div class="text-end">
-        <button class="btn btn-primary" id="showFormBtn">Thêm Sản Phẩm</button>
+        <!-- <button class="btn btn-primary" id="showFormBtn"></button> -->
+        <a href="admin_add.php" class="btn btn-primary">Thêm Sản Phẩm </a>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
         <?php 

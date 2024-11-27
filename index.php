@@ -1,15 +1,16 @@
 <?php
 include 'connect.php';
 //AI
-$productsPerPage = 6; 
-$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$currentPage = max($currentPage, 1); 
-$totalProductsQuery = "SELECT COUNT(*) AS total FROM dsthucuong";
-$totalProductsResult = $conn->query($totalProductsQuery);
-$totalProducts = $totalProductsResult->fetch_assoc()['total'];
-$offset = ($currentPage - 1) * $productsPerPage;
+// $productsPerPage = 6; 
+// $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+// $currentPage = max($currentPage, 1); 
+// $totalProductsQuery = "SELECT COUNT(*) AS total FROM dsthucuong";
+// $totalProductsResult = $conn->query($totalProductsQuery);
+// $totalProducts = $totalProductsResult->fetch_assoc()['total'];
+// $offset = ($currentPage - 1) * $productsPerPage;
 
-$sql = "SELECT * FROM dsthucuong LIMIT $offset, $productsPerPage";
+// $sql = "SELECT * FROM dsthucuong LIMIT $offset, $productsPerPage";
+$sql = "SELECT * FROM dsthucuong";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>

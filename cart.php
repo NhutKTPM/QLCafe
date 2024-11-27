@@ -134,40 +134,6 @@
 
 
 
-    <!-- <body class="d-flex flex-column">
-
-
-<div class="container py-5 content">
-    <h2 class="text-center mb-4">Giỏ Hàng</h2>
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>Hình Ảnh</th>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Số Lượng</th>
-                    <th>Đơn Giá</th>
-                    <th>Thành Tiền</th>
-                    <th>Hành Động</th>
-                </tr>
-            </thead>
-            <tbody id="cartItems">
-                <tr>
-                    <td colspan="6" class="text-center">Giỏ hàng hiện tại trống</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="text-end">
-        <h4 id="totalPrice">Tổng cộng: 0đ</h4>
-        <button class="btn btn-primary" id="checkoutButton" disabled>Thanh Toán</button>
-    </div>
-</div> -->
-
-
-
-
-
 
 
 

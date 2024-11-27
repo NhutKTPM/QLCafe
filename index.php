@@ -68,7 +68,7 @@ $result = $conn->query($sql);
             ?>
                     <div class="col">
                         <div class="card h-100">
-                            
+                            <img src='<?=$product['hinhanh']?>' class="card-img-top" alt='<?=$product['ten']?>' >
                             <div class="card-body">
                                 <h5 class="card-title"> <?=$product['ten'] ?></h5>
                                 <p class="card-text"> <?=$product['mota'] ?></p>

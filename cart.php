@@ -81,42 +81,99 @@
 
 
 
-    <h1>Giỏ hàng</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Mã thức uống</th>
-                <th>Tên thức uống</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()) {
-                $total += $row['thanhtien'];
-            ?>
-                <tr>
-                    <td><?php echo $row['mathucuong']; ?></td>
-                    <td><?php echo $row['ten']; ?></td>
-                    <td><?php echo number_format($row['gia'], 0, ',', '.'); ?> VND</td>
-                    <td><?php echo $row['soluong']; ?></td>
-                    <td><?php echo number_format($row['thanhtien'], 0, ',', '.'); ?> VND</td>
-                    <td>
-                        <a href="delete_from_cart.php?mathucuong=<?php echo $row['mathucuong']; ?>"
-                            onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
-                            Xóa
-                        </a>
-                    </td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-    <h2>Tổng tiền: <?php echo number_format($total, 0, ',', '.'); ?> VND</h2>
+    <div class="container py-5 content">
+        <h2 class="text-center mb-4">Giỏ Hàng</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Mã thức uống</th>
+                        <th>Tên thức uống</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $result->fetch_assoc()) {
+                        $total += $row['thanhtien'];
+                    ?>
+                        <tr>
+                            <td><?php echo $row['mathucuong']; ?></td>
+                            <td><?php echo $row['ten']; ?></td>
+                            <td><?php echo number_format($row['gia'], 0, ',', '.'); ?> VND</td>
+                            <td><?php echo $row['soluong']; ?></td>
+                            <td><?php echo number_format($row['thanhtien'], 0, ',', '.'); ?> VND</td>
+                            <td>
+                                <a href="delete_from_cart.php?mathucuong=<?php echo $row['mathucuong']; ?>"
+                                    onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <div class="text-end">
+                <h2 id="totalPrice">Tổng tiền: <?php echo number_format($total, 0, ',', '.'); ?> VND</h2>
+                <button class="btn btn-primary" id="checkoutButton" disabled>Thanh Toán</button>
+
+            </div>
 
 
+            
+
+
+        </div>
+
+    </div>
     <?php include 'footer.php'; ?>
+
+
+
+
+
+    <!-- <body class="d-flex flex-column">
+
+
+<div class="container py-5 content">
+    <h2 class="text-center mb-4">Giỏ Hàng</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Hình Ảnh</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn Giá</th>
+                    <th>Thành Tiền</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody id="cartItems">
+                <tr>
+                    <td colspan="6" class="text-center">Giỏ hàng hiện tại trống</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-end">
+        <h4 id="totalPrice">Tổng cộng: 0đ</h4>
+        <button class="btn btn-primary" id="checkoutButton" disabled>Thanh Toán</button>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>

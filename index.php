@@ -60,29 +60,28 @@ $result = $conn->query($sql);
         <h2 class="text-center mb-4">Menu Đồ Uống</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
-            if ($result && $result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '
+            if ($result && $result->num_rows > 0) :
+                $products = $result->fetch_all(MYSQLI_ASSOC);
+            
+            foreach ($products as $product):
+                
+            ?>
                     <div class="col">
                         <div class="card h-100">
-                            <img src="' . ($row['hinhanh']) . '" class="card-img-top" alt="' . ($row['ten']) . '">
+                            
                             <div class="card-body">
-                                <h5 class="card-title">' . ($row['ten']) . '</h5>
-                                <p class="card-text">' . ($row['mota']) . '</p>
-                                <p class="card-text"><strong>' . number_format($row['gia'], 0, ',', '.') . 'đ</strong></p>
+                                <h5 class="card-title"> <?=$product['ten'] ?></h5>
+                                <p class="card-text"> <?=$product['mota'] ?></p>
+                                <p class="card-text"><strong><?=number_format($product['gia'], 0, ',', '.') ?>đ</strong></p>
                                 <button class="btn btn-primary add-to-cart">Thêm vào giỏ</button>
                             </div>
                         </div>
-                    </div>';
-                }
-            } else {
-                echo '<p class="text-center text-muted">Không có sản phẩm nào.</p>';
-            }
+                    </div>
+            <?php endforeach;
+            endif;
             ?>
         </div>
-        <?php
-        include 'pagination.php';
-        ?>
+
     </div>
 </section>
 <section id="about" class="py-5 bg-light">

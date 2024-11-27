@@ -15,6 +15,7 @@ $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,14 +27,17 @@ $result = $conn->query($sql);
         .navbar {
             background-color: #2c1810 !important;
         }
+
         .card-img-top {
             height: 200px;
             object-fit: cover;
         }
+
         .footer {
             background-color: #2c1810;
             color: white;
         }
+
         .social-icon {
             width: 35px;
             height: 35px;
@@ -44,66 +48,70 @@ $result = $conn->query($sql);
             color: #2c1810;
             margin-right: 10px;
         }
-        ul>li{
+
+        ul>li {
             list-style: none;
         }
-        .text-white{
+
+        .text-white {
             text-decoration: none;
         }
     </style>
 </head>
+
 <body>
 
-<?php include 'navbar.php'; ?>
-<section id="drinks" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Menu Đồ Uống</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <?php
-            if ($result && $result->num_rows > 0) :
-                $products = $result->fetch_all(MYSQLI_ASSOC);
-            
-            foreach ($products as $product):
-                
-            ?>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src='<?=$product['hinhanh']?>' class="card-img-top" alt='<?=$product['ten']?>' >
-                            <div class="card-body">
-                                <h5 class="card-title"> <?=$product['ten'] ?></h5>
-                                <p class="card-text"> <?=$product['mota'] ?></p>
-                                <p class="card-text"><strong><?=number_format($product['gia'], 0, ',', '.') ?>đ</strong></p>
-                                <button class="btn btn-primary add-to-cart">Thêm vào giỏ</button>
+    <?php include 'navbar.php'; ?>
+    <section id="drinks" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Menu Đồ Uống</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <?php
+                if ($result && $result->num_rows > 0) :
+                    $products = $result->fetch_all(MYSQLI_ASSOC);
+
+                    foreach ($products as $product):
+
+                ?>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src='<?= $product['hinhanh'] ?>' class="card-img-top" alt='<?= $product['ten'] ?>'>
+                                <div class="card-body">
+                                    <h5 class="card-title"> <?= $product['ten'] ?></h5>
+                                    <p class="card-text"> <?= $product['mota'] ?></p>
+                                    <p class="card-text"><strong><?= number_format($product['gia'], 0, ',', '.') ?>đ</strong></p>
+                                    <button class="btn btn-primary add-to-cart">Thêm vào giỏ</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-            <?php endforeach;
-            endif;
-            ?>
-        </div>
+                <?php endforeach;
+                endif;
+                ?>
+            </div>
 
-    </div>
-</section>
-<section id="about" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-4">Về Chúng Tôi</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Câu Chuyện Coffee Web</h4>
-                <p>Coffee Web là không gian cafe được yêu thích tại Hà Nội với hơn 5 năm kinh nghiệm. Chúng tôi tự hào mang đến những tách cà phê ngon nhất từ những hạt cà phê được chọn lọc kỹ càng.</p>
-            </div>
-            <div class="col-md-6">
-                <h4>Giá Trị Cốt Lõi</h4>
-                <ul>
-                    <li>Chất lượng đồ uống tuyệt hảo</li>
-                    <li>Dịch vụ khách hàng chu đáo</li>
-                    <li>Không gian thoải mái, ấm cúng</li>
-                    <li>Giá cả hợp lý</li>
-                </ul>
+        </div>
+    </section>
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Về Chúng Tôi</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Câu Chuyện Coffee Web</h4>
+                    <p>Coffee Web là không gian cafe được yêu thích tại Hà Nội với hơn 5 năm kinh nghiệm. Chúng tôi tự hào mang đến những tách cà phê ngon nhất từ những hạt cà phê được chọn lọc kỹ càng.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Giá Trị Cốt Lõi</h4>
+                    <ul>
+                        <li>Chất lượng đồ uống tuyệt hảo</li>
+                        <li>Dịch vụ khách hàng chu đáo</li>
+                        <li>Không gian thoải mái, ấm cúng</li>
+                        <li>Giá cả hợp lý</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<?php include 'footer.php' ?>
+    </section>
+    <?php include 'footer.php' ?>
 </body>
+
 </html>

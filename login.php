@@ -60,7 +60,7 @@ include 'connect.php';
         <div class="card">
             <div class="card-body">
             <h2>Đăng nhập</h2>
-            <form action="">
+            <form method="POST" action="login_action.php">
                 <label for="">Tên đăng nhập</label>
                 <input type="text" name="tentk" id="tentk">
                 <label for="">Mật khẩu</label>

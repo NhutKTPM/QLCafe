@@ -66,12 +66,17 @@
 
     <?php
     include 'connect.php';
-
+    
+    $cart_tentk = "";
+    if (isset($_SESSION["tentk"])){
+        $cart_tentk = $_SESSION["tentk"];
+    }
 
     $sql = "SELECT dsorder.mathucuong, dsthucuong.ten, dsthucuong.gia, dsorder.soluong, 
-        (dsthucuong.gia * dsorder.soluong) AS thanhtien
+        (dsthucuong.gia * dsorder.soluong) AS thanhtien, dsorder.tentk
         FROM dsorder
-        JOIN dsthucuong ON dsorder.mathucuong = dsthucuong.mathucuong";
+        JOIN dsthucuong ON dsorder.mathucuong = dsthucuong.mathucuong
+        WHERE dsorder.tentk = '$cart_tentk'";
 
     $result = $conn->query($sql);
 
@@ -106,7 +111,7 @@
                             <td><?php echo $row['soluong']; ?></td>
                             <td><?php echo number_format($row['thanhtien'], 0, ',', '.'); ?> VND</td>
                             <td>
-                                <a href="delete_from_cart.php?mathucuong=<?php echo $row['mathucuong']; ?>"
+                                <a href="delete_from_cart.php?mathucuong=<?php echo $row['mathucuong']; ?>&tentk=<?php echo $row['tentk']; ?>"
                                     onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
                                     Xóa
                                 </a>

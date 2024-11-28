@@ -21,6 +21,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="login.php"><i class="fas fa-user"></i> Đăng ký/Đăng nhập</a>
                 </li> -->
+
+                <?php 
+                    session_start();
+                    if (isset($_SESSION["admin_tentk"])) : ?>
+                        <li class="nav-item">
+                      <div class="nav-link"> <?php echo $_SESSION["admin_tentk"]; ?> </div>
+                      </li>
+                      <li class="nav-item">
+                      <a class="nav-link" href="admin_logout.php"><i class="fas fa-user"></i> Đăng xuất </a>
+                      </li>
+                      
+
+                    <?php else:
+                        header ("location: admin_login.php");
+                        endif ?>
+
+
             </ul>
         </div>
     </div>

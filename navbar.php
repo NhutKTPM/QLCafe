@@ -19,8 +19,25 @@
                     <a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Liên hệ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.php"><i class="fas fa-user"></i> Đăng ký/Đăng nhập</a>
+                    
+                    <?php 
+                    session_start();
+                    if (isset($_SESSION["tentk"])) : ?>
+                        <li class="nav-item">
+                      <div class="nav-link"> <?php echo $_SESSION["tentk"]; ?> </div>
+                      </li>
+                      <li class="nav-item">
+                      <a class="nav-link" href="logout.php"><i class="fas fa-user"></i> Đăng xuất </a>
+                      </li>
+                      
+
+                    <?php else :  ?>
+                        <li class="nav-item">
+                    <a class="nav-link" href="login.php"><i class="fas fa-user"></i> Đăng ký/Đăng nhập </a>
+                        </li>
+                    <?php endif ?>
                 </li>
+
             </ul>
         </div>
     </div>

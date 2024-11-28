@@ -52,29 +52,28 @@ include 'connect.php';
 
 <body>
 
-    <?php include 'navbar.php'; ?>
 
+        <!-- Trang này không để navbar footer -->
 
     <div class="container">
 
         <div class="card">
             <div class="card-body">
             <h2>Đăng nhập</h2>
-            <form method="POST" action="login_action.php">
+            <form method="POST" action="admin_login_action.php">
                 <label for="">Tên đăng nhập</label>
                 <input type="text" name="tentk" id="tentk">
                 <label for="">Mật khẩu</label>
                 <input type="text" name="matkhau" id="matkhau">
                 <input type="submit" value="Đăng nhập">
             </form>
-            <a href="register.php" class="btn btn-primary">Đăng ký</a>
+            
             </div>
         </div>
 
     </div>
 
 
-    <?php include 'footer.php' ?>
 </body>
 
 </html>

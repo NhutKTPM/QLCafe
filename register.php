@@ -59,15 +59,16 @@ include 'connect.php';
 
         <div class="card">
             <div class="card-body">
-            <h2>Đăng nhập</h2>
-            <form method="POST" action="login_action.php">
+            <h2>Đăng ký</h2>
+            <form method="POST" action="register_action.php">
                 <label for="">Tên đăng nhập</label>
                 <input type="text" name="tentk" id="tentk">
                 <label for="">Mật khẩu</label>
                 <input type="text" name="matkhau" id="matkhau">
-                <input type="submit" value="Đăng nhập">
+                <label for="">Nhập lại mật khẩu</label>
+                <input type="text" name="nhaplaimatkhau" id="nhaplaimatkhau">
+                <input type="submit" value="Đăng ký">
             </form>
-            <a href="register.php" class="btn btn-primary">Đăng ký</a>
             </div>
         </div>
 

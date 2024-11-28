@@ -4,7 +4,7 @@ $matkhau = $_POST['matkhau'];
 
 require 'connect.php';
 
-$sql = "SELECT * FROM dstaikhoan WHERE tentk='$tentk'";
+$sql = "SELECT * FROM ds_tk_admin WHERE tentk='$tentk'";
 $result = $conn->query($sql);
 if ($result->num_rows == 0){
     echo "Tai khoan khong ton tai";
@@ -17,11 +17,9 @@ $taikhoan = $dstaikhoan[0];
 
 
 if ($matkhau == $taikhoan['matkhau']) {
-    echo "Dung mat khau";
     session_start();
-    $_SESSION["tentk"] = $tentk;
-    echo $_SESSION["tentk"];
-    header("location: index.php");
+    $_SESSION["admin_tentk"] = $tentk;
+    header("location: admin.php");
 }
 else {
     echo "Sai mat khau";

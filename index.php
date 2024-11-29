@@ -80,7 +80,11 @@ $result = $conn->query($sql);
                                     <h5 class="card-title"> <?= $product['ten'] ?></h5>
                                     <p class="card-text"> <?= $product['mota'] ?></p>
                                     <p class="card-text"><strong><?= number_format($product['gia'], 0, ',', '.') ?>đ</strong></p>
-                                    <button class="btn btn-primary add-to-cart">Thêm vào giỏ</button>
+                                    <!-- <button class="btn btn-primary add-to-cart">Thêm vào giỏ</button> -->
+                                    <form action="add_to_cart.php" method="POST">
+                                        <input type="hidden" name="mathucuong" value="<?= $product['mathucuong'] ?>">
+                                        <button type="submit" name="add_to_cart" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -15,65 +15,57 @@ include 'connect.php';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        .navbar {
-            background-color: #2c1810 !important;
+        body {
+            background-color: #f8f9fa;
         }
 
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
+        .card {
+            margin-top: 100px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .footer {
+        .card-header {
+            background-color: #2c1810;
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .btn-custom {
             background-color: #2c1810;
             color: white;
         }
 
-        .social-icon {
-            width: 35px;
-            height: 35px;
-            line-height: 35px;
-            text-align: center;
-            border-radius: 50%;
-            background-color: white;
-            color: #2c1810;
-            margin-right: 10px;
-        }
-
-        ul>li {
-            list-style: none;
-        }
-
-        .text-white {
-            text-decoration: none;
+        .btn-custom:hover {
+            background-color: #472a1d;
+            color: white;
         }
     </style>
 </head>
 
 <body>
-
-
-        <!-- Trang này không để navbar footer -->
-
-    <div class="container">
-
-        <div class="card">
+    <div class="container d-flex justify-content-center">
+        <div class="card w-50">
+            <div class="card-header">
+                Đăng nhập
+            </div>
             <div class="card-body">
-            <h2>Đăng nhập</h2>
-            <form method="POST" action="admin_login_action.php">
-                <label for="">Tên đăng nhập</label>
-                <input type="text" name="tentk" id="tentk">
-                <label for="">Mật khẩu</label>
-                <input type="text" name="matkhau" id="matkhau">
-                <input type="submit" value="Đăng nhập">
-            </form>
-            
+                <form method="POST" action="admin_login_action.php">
+                    <div class="mb-3">
+                        <label for="tentk" class="form-label">Tên đăng nhập</label>
+                        <input type="text" name="tentk" id="tentk" class="form-control" placeholder="Nhập tên đăng nhập" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="matkhau" class="form-label">Mật khẩu</label>
+                        <input type="password" name="matkhau" id="matkhau" class="form-control" placeholder="Nhập mật khẩu" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-custom">Đăng nhập</button>
+                    </div>
+                </form>
             </div>
         </div>
-
     </div>
-
-
 </body>
 
 </html>

@@ -39,7 +39,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Hình Ảnh: </label>
-                    <input type="text" class="form-control" id="" value="<?= $thucuong['hinhanh'] ?>">
+                    <input type="text" class="form-control" id="hinhanh" name="hinhanh" value="<?= $thucuong['hinhanh'] ?>">
                     <img src="<?= $thucuong['hinhanh'] ?>" alt=""hinhanh>
 
                 </div>

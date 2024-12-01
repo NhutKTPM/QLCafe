@@ -2,7 +2,7 @@
 
 require 'connect.php';
 
-if(isset($_POST['admin_edit'])){
+// if(isset($_POST['admin_edit'])){
 
 
     $mathucuong = $_POST['mathucuong'];
@@ -12,7 +12,7 @@ if(isset($_POST['admin_edit'])){
     $gia = $_POST['gia'];
 
 
-    $hinhanh = '';
+    // $hinhanh = '';
     if (isset($_FILES['hinhanh']) && $_FILES['hinhanh']['error'] === UPLOAD_ERR_OK) {
         $target_dir = "img/"; // Thư mục lưu ảnh
         $target_file = $target_dir . basename($_FILES["hinhanh"]["name"]);
@@ -30,7 +30,7 @@ if(isset($_POST['admin_edit'])){
         }
     }
 
-$sql = "UPDATE dsthucuong SET hinhanh='$hinhanh',ten='$ten',mota ='$mota',gia='$gia' WHERE mathucuong='$thucuong'";
+$sql = "UPDATE dsthucuong SET hinhanh='$hinhanh',ten='$ten',mota ='$mota',gia='$gia' WHERE mathucuong='$mathucuong'";
 
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";
@@ -38,4 +38,4 @@ if ($conn->query($sql) === TRUE) {
     echo "Error updating record: " . $conn->error;
   }
 
-}
+// }

@@ -6,13 +6,12 @@ require 'connect.php';
 
 
     $mathucuong = $_POST['mathucuong'];
-    $hinhanh = $_POST['hinhanh'];
+    // $hinhanh = $_POST['hinhanh'];
     $ten = $_POST['ten'];
     $mota = $_POST['mota'];
     $gia = $_POST['gia'];
 
-
-    // $hinhanh = '';
+    $hinhanh = '';
     if (isset($_FILES['hinhanh']) && $_FILES['hinhanh']['error'] === UPLOAD_ERR_OK) {
         $target_dir = "img/"; // Thư mục lưu ảnh
         $target_file = $target_dir . basename($_FILES["hinhanh"]["name"]);
@@ -30,7 +29,16 @@ require 'connect.php';
         }
     }
 
-$sql = "UPDATE dsthucuong SET hinhanh='$hinhanh',ten='$ten',mota ='$mota',gia='$gia' WHERE mathucuong='$mathucuong'";
+    echo $hinhanh;
+
+    $sql = '';
+    if ($hinhanh == ''){
+        $sql = "UPDATE dsthucuong SET ten='$ten',mota ='$mota',gia='$gia' WHERE mathucuong='$mathucuong'";
+    }
+    else {
+        $sql = "UPDATE dsthucuong SET hinhanh='$hinhanh',ten='$ten',mota ='$mota',gia='$gia' WHERE mathucuong='$mathucuong'";
+    }
+
 
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";

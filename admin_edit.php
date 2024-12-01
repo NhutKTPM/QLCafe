@@ -1,3 +1,59 @@
+<?php
+
+require 'connect.php';
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+
+    $mathucuong = $_POST['mathucuong'];
+    // $hinhanh = $_POST['hinhanh'];
+    $ten = $_POST['ten'];
+    $mota = $_POST['mota'];
+    $gia = $_POST['gia'];
+
+    $hinhanh = '';
+    if (isset($_FILES['hinhanh']) && $_FILES['hinhanh']['error'] === UPLOAD_ERR_OK) {
+        $target_dir = "img/"; // Thư mục lưu ảnh
+        $target_file = $target_dir . basename($_FILES["hinhanh"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        // Kiểm tra định dạng hình ảnh
+        $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+        if (in_array($imageFileType, $allowed_types)) {
+            if (move_uploaded_file($_FILES["hinhanh"]["tmp_name"], $target_file)) {
+                $hinhanh = $target_file;
+            } else {
+                echo "Lỗi khi tải lên hình ảnh.";
+            }
+        } else {
+            echo "Chỉ chấp nhận các định dạng JPG, JPEG, PNG, GIF.";
+        }
+    }
+
+    echo $hinhanh;
+
+    $sql = '';
+    if ($hinhanh == ''){
+        $sql = "UPDATE dsthucuong SET ten='$ten',mota ='$mota',gia='$gia' WHERE mathucuong='$mathucuong'";
+    }
+    else {
+        $sql = "UPDATE dsthucuong SET hinhanh='$hinhanh',ten='$ten',mota ='$mota',gia='$gia' WHERE mathucuong='$mathucuong'";
+    }
+
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+  } else {
+    echo "Error updating record: " . $conn->error;
+  }
+
+}
+
+  ?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,58 +67,58 @@
 
 <body>
     <?php include 'admin_navbar.php'; ?>
-
+        
     <?php
-    $account = [
-        'username' => 'chihihi',
-        'first_name' => 'Tran',
-        'last_name' => 'Chi',
-        'email' => 'chihihi@gmail.com',
-        'status' => 'Active'
-    ];
+    require 'connect.php';
+    $thucuong = $_GET['mathucuong'];
+    $sql = "SELECT * FROM dsthucuong where mathucuong='$thucuong' ";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) :
+        $dsthucuong = $result->fetch_all(MYSQLI_ASSOC);
+        
+        $thucuong  = $dsthucuong[0];
     ?>
-
     
 
+
+
+    
     <div class="container">
 
         <div class="card">
-            <H1>CẬP NHẬT TÀI KHOẢN</H1>
+            <H1>form edit thuc uong</H1>
 
-            <form>
+            <form method= "POST" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Tên đăng nhập</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $account['username'] ?>">
+                    <label for="exampleInputEmail1" class="form-label">Mã Thức Uống: </label>
+                    <input type="text" class="form-control" id="mathucuong" name="mathucuong"value="<?= $thucuong['mathucuong'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Họ</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" value="<?= $account['first_name'] ?>">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Tên:</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" value="<?= $account['last_name'] ?>">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleInputPassword1" value="<?= $account['email'] ?>">
-                </div>
+                    <label for="exampleInputPassword1" class="form-label">Hình Ảnh: </label>
+                    <!-- <input type="text" class="form-control" id="hinhanh" name="hinhanh" value=""> -->
+                    <input type="file" class="form-control" id="hinhanh" name="hinhanh" accept="image/*"><br>
+                    <img src="<?= $thucuong['hinhanh'] ?>" alt=""hinhanh>
 
+                </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Trạng thái:</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Vui lòng chọn...</option>
-                        <option value="1"
-                            <?= ($account['status'] == 'Active') ? 'selected' : '' ?>>
-                            Kích hoạt</option>
-                        <option value="2"
-                            <?= ($account['status'] == 'Disable') ? 'selected' : '' ?>>
-                            Vô hiệu hóa</option>
-                    </select>
+                    <label for="exampleInputPassword1" class="form-label">Tên: </label>
+                    <input type="text" class="form-control" id="ten" name="ten" value="<?= $thucuong['ten'] ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Mô Tả: </label>
+                    <input type="text" class="form-control" id="mota" name="mota" value="<?= $thucuong['mota'] ?>">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Gửi</button>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Giá:</label>
+                    <input type="number" class="form-control" id="gia" name="gia" value="<?= $thucuong['gia'] ?>">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sửa</button>
             </form>
         </div>
     </div>
-
+    <?php
+    endif;
+    ?>
 </body>

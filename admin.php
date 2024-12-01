@@ -70,7 +70,7 @@ $result = $conn->query($sql);
                         <h5 class="card-title"><?= $thucuong['ten'] ?></h5>
                         <p class="card-text"><?= $thucuong['mota'] ?></p>
                         <p class="card-text"><strong><?= number_format($thucuong['gia'], 0, ',', '.') ?>đ</strong></p>
-                        <a href="edit_product.php?id=<?= $thucuong['mathucuong'] ?>" class="btn btn-warning mt-2">Sửa</a>
+                        <a href="admin_edit.php?mathucuong=<?= $thucuong['mathucuong'] ?>" class="btn btn-warning mt-2">Sửa</a>
                         <form method="POST" action="admin_delete.php?mathucuong=<?=$thucuong['mathucuong'] ?>" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $thucuong['mathucuong'] ?>">
                             <button type="submit" name="delete" class="btn btn-danger mt-2">Xóa</button>

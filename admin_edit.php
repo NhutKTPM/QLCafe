@@ -63,10 +63,45 @@ if ($conn->query($sql) === TRUE) {
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="js/admin_add.js"></script>
+    <style>
+        form {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 40px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+        .navbar {
+            background-color: #2c1810 !important;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .footer {
+            background-color: #2c1810;
+            color: white;
+        }
+        .action-btn {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 
 <body>
-    <?php include 'admin_navbar.php'; ?>
+    <?php include 'navbar_ad.php'; ?>
         
     <?php
     require 'connect.php';
@@ -97,7 +132,7 @@ if ($conn->query($sql) === TRUE) {
                     <label for="exampleInputPassword1" class="form-label">Hình Ảnh: </label>
                     <!-- <input type="text" class="form-control" id="hinhanh" name="hinhanh" value=""> -->
                     <input type="file" class="form-control" id="hinhanh" name="hinhanh" accept="image/*"><br>
-                    <img src="<?= $thucuong['hinhanh'] ?>" alt=""hinhanh>
+                    <img src="<?= $thucuong['hinhanh'] ?>" alt=""hinhanh height="100px">
 
                 </div>
                 <div class="mb-3">

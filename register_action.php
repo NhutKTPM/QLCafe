@@ -7,9 +7,9 @@ require 'connect.php';
 $sql = "INSERT INTO dstaikhoan VALUES ('$tentk', '$matkhau');";
 $result = $conn->query($sql);
 if ($result){
-    echo "Dang ky thanh cong";
+    echo "<script>alert('Đăng ký thành công');window.location.href = 'login.php';</script>";
 }
 else {
-    echo "Dang ky khong thanh cong";
+    echo "<script>alert('Đăng ký không thành công');window.location.href = 'login.php';</script>";
 
 }

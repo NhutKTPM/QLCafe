@@ -112,7 +112,7 @@ $result = $conn->query($sql);
         document.getElementById('addProductForm').style.display = 'block';
     });
 </script>
-
+<?php include 'cart_count.php' ?>
 <?php include 'footer.php'; ?>
 </body>
 </html>

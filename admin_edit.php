@@ -121,7 +121,7 @@ if ($conn->query($sql) === TRUE) {
     <div class="container">
 
         <div class="card">
-            <H1>form edit thuc uong</H1>
+            <H1> EDIT </H1>
 
             <form method= "POST" enctype="multipart/form-data">
                 <div class="mb-3">

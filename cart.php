@@ -123,30 +123,11 @@
             <div class="text-end">
                 <h2 id="totalPrice">Tổng tiền: <?php echo number_format($total, 0, ',', '.'); ?> VND</h2>
                 <button class="btn btn-primary" id="checkoutButton" disabled>Thanh Toán</button>
-
             </div>
-
-
-            
-
-
         </div>
-
     </div>
     <?php include 'footer.php'; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
+<?php include 'cart_count.php' ?>
 
 </html>

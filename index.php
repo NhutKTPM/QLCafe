@@ -83,7 +83,7 @@ $result = $conn->query($sql);
                                     <!-- <button class="btn btn-primary add-to-cart">Thêm vào giỏ</button> -->
                                     <form action="add_to_cart.php" method="POST">
                                         <input type="hidden" name="mathucuong" value="<?= $product['mathucuong'] ?>">
-                                        <button type="submit" name="add_to_cart" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                                        <button type="submit" name="add_to_cart" class="btn btn-primary">Thêm vào giỏ hàng</button>               
                                     </form>
                                 </div>
                             </div>
@@ -117,5 +117,6 @@ $result = $conn->query($sql);
     </section>
     <?php include 'footer.php' ?>
 </body>
+<?php include 'cart_count.php' ?>
 
 </html>

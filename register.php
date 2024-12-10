@@ -113,7 +113,9 @@ include 'connect.php';
                         <label for="nhaplaimatkhau" class="form-label">Nhập lại mật khẩu</label>
                         <input type="password" name="nhaplaimatkhau" id="nhaplaimatkhau" class="form-control" placeholder="Nhập lại mật khẩu" required>
                     </div>
-                    <div class="d-grid">
+                    
+                    <div>
+                        <a href="login.php" class="btn btn-submit">Quay lại</a>
                         <button type="submit" class="btn btn-submit">Đăng ký</button>
                     </div>
                 </form>
